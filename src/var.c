@@ -7,17 +7,15 @@ int HEIGHT = 1000;
 int WIDTH = 1000;
 int maxIters = 75;
 
-long double PI = 3.141592653589793238;
-
 void printComplex(float complex z){
     printf("%f + %f i\n", creal(z), cimag(z));
     return;
 }
 
-int iterateN(long double complex z, long double complex s){
+int iterateN(long double complex s){
     int iters = 0;
     while (creal(s)*creal(s) + cimag(s)*cimag(s) <= 4 && iters < maxIters){
-        s = s * s + z;
+        s = s * s;
         iters++;
     }
     return iters;
@@ -110,7 +108,7 @@ void mandelPlot(char *filename, long double complex start)
         for (x = 0; x <= WIDTH - 1; x++)
         {
             z = (x-(WIDTH/2)) * (2.0/WIDTH) - 0.5 + (y-(HEIGHT/2)) * (2.0/HEIGHT) * I;
-            float n = iterateN(z, start);
+            float n = iterateN(z);
             n = (float)(n/maxIters) * 255.0;
 
             red = (int)(n * (100.0/255.0));
@@ -138,8 +136,6 @@ void mandelPlot(char *filename, long double complex start)
 }
 int main(){
     long double complex z = 0 + 0i;
-
-    char filename[20];
 
     for (float k=0; k<400; k++){
         printf("Generating image %03d\n", (int) k);

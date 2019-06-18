@@ -7,8 +7,6 @@ int HEIGHT = 1000;
 int WIDTH = 1000;
 int maxIters = 75;
 
-long double PI = 3.141592653589793238;
-
 void printComplex(float complex z){
     printf("%f + %f i\n", creal(z), cimag(z));
     return;
@@ -139,15 +137,13 @@ void mandelPlot(char *filename, long double complex start)
 int main(){
     long double complex z = 0 + 0i;
 
-    char filename[20];
+    time_t t;
 
-    for (float k=0; k<400; k++){
-        printf("Generating image %03d\n", (int) k);
-        sprintf(filename, "anim%03d.bmp", (int) k);
-        mandelPlot(filename, k/400.0 * cos(k/400.0 * PI) + k/400.0 * sin(k/400.0 * PI) * I);
-    }
-
+    srand(time(NULL));
+    long double s = (long double) rand()/RAND_MAX;
+    long double a = sin(s);
+    long double b = cos(s);
+    mandelPlot("out.bmp", a + b * I);
 
     return 0;
 }
-
