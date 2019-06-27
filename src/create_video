@@ -1,8 +1,0 @@
-#!/bin/bash
-#
-# create_video
-# usage:
-#       create_video <outname>.mp4
-#
-
-ffmpeg -framerate 25 -i anim%03d.bmp -c:v libx264 -profile:v high -crf 20 -pix_fmt yuv420p $1

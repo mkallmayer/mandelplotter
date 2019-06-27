@@ -12,10 +12,10 @@ void printComplex(float complex z){
 }
 
 int iterateN(long double complex z){
-    long double complex s = 2 + 2i;
+    long double complex c = 0.1 + 0.6 * I;
     int iters = 0;
-    while (creal(s)*creal(s) + cimag(s)*cimag(s) <= 4 && iters < maxIters){
-        s = s * s + z;
+    while (creal(z)*creal(z) + cimag(z)*cimag(z) <= 4 && iters < maxIters){
+        z = z * z + z;
         iters++;
     }
     return iters;
